@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRecursoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRecursoLabel_reIsbn}" for="reIsbn" />
+                    <h:inputText id="reIsbn" value="#{recursoController.selected.reIsbn}" title="#{bundle.CreateRecursoTitle_reIsbn}" required="true" requiredMessage="#{bundle.CreateRecursoRequiredMessage_reIsbn}"/>
+                    <h:outputLabel value="#{bundle.CreateRecursoLabel_reTitulo}" for="reTitulo" />
+                    <h:inputText id="reTitulo" value="#{recursoController.selected.reTitulo}" title="#{bundle.CreateRecursoTitle_reTitulo}" required="true" requiredMessage="#{bundle.CreateRecursoRequiredMessage_reTitulo}"/>
+                    <h:outputLabel value="#{bundle.CreateRecursoLabel_reResumen}" for="reResumen" />
+                    <h:inputText id="reResumen" value="#{recursoController.selected.reResumen}" title="#{bundle.CreateRecursoTitle_reResumen}" required="true" requiredMessage="#{bundle.CreateRecursoRequiredMessage_reResumen}"/>
+                    <h:outputLabel value="#{bundle.CreateRecursoLabel_reNumpag}" for="reNumpag" />
+                    <h:inputText id="reNumpag" value="#{recursoController.selected.reNumpag}" title="#{bundle.CreateRecursoTitle_reNumpag}" required="true" requiredMessage="#{bundle.CreateRecursoRequiredMessage_reNumpag}"/>
+                    <h:outputLabel value="#{bundle.CreateRecursoLabel_reTipo}" for="reTipo" />
+                    <h:inputText id="reTipo" value="#{recursoController.selected.reTipo}" title="#{bundle.CreateRecursoTitle_reTipo}" required="true" requiredMessage="#{bundle.CreateRecursoRequiredMessage_reTipo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{recursoController.create}" value="#{bundle.CreateRecursoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{recursoController.prepareList}" value="#{bundle.CreateRecursoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRecursoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

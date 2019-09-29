@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRecursoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRecursoEmpty}" rendered="#{recursoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{recursoController.items.rowCount > 0}">
+                    <h:outputText value="#{recursoController.pagination.pageFirstItem + 1}..#{recursoController.pagination.pageLastItem + 1}/#{recursoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{recursoController.previous}" value="#{bundle.Previous} #{recursoController.pagination.pageSize}" rendered="#{recursoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{recursoController.next}" value="#{bundle.Next} #{recursoController.pagination.pageSize}" rendered="#{recursoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{recursoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRecursoTitle_reIsbn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reIsbn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRecursoTitle_reTitulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reTitulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRecursoTitle_reResumen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reResumen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRecursoTitle_reNumpag}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reNumpag}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRecursoTitle_reTipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reTipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{recursoController.prepareView}" value="#{bundle.ListRecursoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{recursoController.prepareEdit}" value="#{bundle.ListRecursoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{recursoController.destroy}" value="#{bundle.ListRecursoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{recursoController.prepareCreate}" value="#{bundle.ListRecursoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRecursoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

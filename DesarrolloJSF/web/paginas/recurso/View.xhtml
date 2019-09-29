@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRecursoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRecursoLabel_reIsbn}"/>
+                    <h:outputText value="#{recursoController.selected.reIsbn}" title="#{bundle.ViewRecursoTitle_reIsbn}"/>
+                    <h:outputText value="#{bundle.ViewRecursoLabel_reTitulo}"/>
+                    <h:outputText value="#{recursoController.selected.reTitulo}" title="#{bundle.ViewRecursoTitle_reTitulo}"/>
+                    <h:outputText value="#{bundle.ViewRecursoLabel_reResumen}"/>
+                    <h:outputText value="#{recursoController.selected.reResumen}" title="#{bundle.ViewRecursoTitle_reResumen}"/>
+                    <h:outputText value="#{bundle.ViewRecursoLabel_reNumpag}"/>
+                    <h:outputText value="#{recursoController.selected.reNumpag}" title="#{bundle.ViewRecursoTitle_reNumpag}"/>
+                    <h:outputText value="#{bundle.ViewRecursoLabel_reTipo}"/>
+                    <h:outputText value="#{recursoController.selected.reTipo}" title="#{bundle.ViewRecursoTitle_reTipo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{recursoController.destroyAndView}" value="#{bundle.ViewRecursoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRecursoEditLink}"/>
+                <br />
+                <h:commandLink action="#{recursoController.prepareCreate}" value="#{bundle.ViewRecursoCreateLink}" />
+                <br />
+                <h:commandLink action="#{recursoController.prepareList}" value="#{bundle.ViewRecursoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRecursoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
